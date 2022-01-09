@@ -1,33 +1,38 @@
-export interface gameboard {
-    board : number[][]
-    current : boolean
-    turns : number
-    winner : number
-  }
-
-const initialState = {
-    board : [[0,0,0],[0,0,0],[0,0,0]],
-    current : (Math.floor(Math.random()*10))%2===0 ? true : false,
-    turns : 0,
-    winner : 0
+export interface cartDetails {
+    cartOpen : boolean
+    totalPrice : number
+    cartArray : obj[]
 }
 
-type Action = { type : string , arr1 : number , arr2 : number , win : number }
+export const initialState = {
+    cartOpen : false,
+    cartArray : [],
+    totalPrice : 0.00
+}
 
-export const boardReducer =  ( state:gameboard = initialState , action : Action ) => {
+export interface obj{
+    [x: string]: any
+    id : string
+    name : string 
+    price : number
+    rating : number
+    src : string
+    quantity : number
+}
+
+type Action = { type : string , item : obj}
+
+export const cartReducer =  ( state:cartDetails = initialState , action : Action ) => {
     switch(action.type){
-        case "ADD_TURN" : {
-            if(state.current)
-                state.board[action.arr1][action.arr2]=1
-            else
-                state.board[action.arr1][action.arr2]=2
-            state.current=!state.current
-            state.turns++
+        case "TOGGLE_STATE" : {
+            state.cartOpen=!state.cartOpen
             return {...state}
         }
-        case "SET_WINNER" : {
-            state.winner = action.win;
-            console.log(action.win + " wins!")
+        case "ADD_TO_CART" : {
+            action.item = { ...action.item , quantity : 1 }
+            state.cartArray.push(action.item)
+            state.totalPrice+=action.item.price;
+            console.log(state)
             return {...state}
         }
         default : return {...state}
