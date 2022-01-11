@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
 import './App.css';
-import Items from './componenta/items';
-import NavBar from './componenta/navbar';
+import Items from './components/items';
+import NavBar from './components/navbar';
 import { cartDetails } from './store/reducer';
-import Cart from './componenta/cart';
+import Cart from './components/cart';
 
 function App() {
   const cartOpen=useSelector<cartDetails>((state)=>state.cartOpen);

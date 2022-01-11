@@ -1,21 +1,21 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { cartDetails} from '../store/reducer';
+import { cartDetails } from '../store/reducer';
 import './cart.css';
     
 function Cart(){
 
     const [promocode,setPromoCode]=useState<string>("")
-    const itemsInCart:any=useSelector<cartDetails>( (state:any) => (state.cartArray) )
-    const price:any=useSelector<cartDetails>( (state:any)=> state.totalPrice )
+    const itemsInCart=useSelector<cartDetails,any>( (state) => (state.cartArray) )
+    const price=useSelector<cartDetails,number>( (state)=> state.totalPrice )
     const dispatch=useDispatch();
 
     function handleDeleteFromCart(e:any){
         dispatch({type : "DELETE_FROM_CART" , itemDeleteID : e.id })
     }
 
-    const handleChange = (event: InputEvent) => {
-        const value = event;
+    const handleChange = (event: InputEvent,) => {
+        const value = event.target;
         console.log(value)
       }
 
@@ -33,7 +33,7 @@ function Cart(){
             </div>
             <div className='billing'>
                 <div id='promoCode'>PROMO CODE : &nbsp;<input placeholder='Enter your Promo Code' value={promocode} 
-                onChange={()=>handleChange}></input><button id='promoCodeApply'>Apply</button></div>
+                onChange={handleChange}></input><button id='promoCodeApply'>Apply</button></div>
                 <div id='bill'><strong>BILL : {(price).toFixed(2)}</strong></div>
             </div>
         </div>
