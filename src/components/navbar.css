@@ -21,14 +21,24 @@
 }
 
 #navbarFiller2{
-    width: 34%;
+    width: 32%;
 }
 
-#cartarea{
+span#cartarea{
+    display: flex;
+    align-content: flex-end;
     border-radius: 10px;
     background-color: white;
     border:2px solid black;
     margin: 0.2rem 0.5rem 0.2rem 0rem;
+}
+
+span#numOfItems{
+    display: flex;
+    margin-left: 5px;
+    margin-top: 10px;
+    align-content: center;
+    justify-content: center;
 }
 
 img#cart{
