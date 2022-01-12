@@ -4,7 +4,7 @@ import './navbar.css';
 
 function NavBar(){
 
-    const itemNum:any=useSelector<cartDetails>( (state:any) => (state.cartArray) )
+    const itemNum=useSelector<cartDetails,number>( (state:any) => (state.itemNum) )
     const dispatch=useDispatch();
 
     function setCartOpen(){
@@ -18,7 +18,7 @@ function NavBar(){
             <img id="logo" alt="logo" src="https://pbs.twimg.com/media/BzPcHxXCMAEwge2?format=jpg&name=large"></img>
             <input id='searchBar'placeholder='Search for Products, Brands and More' width="10rem"></input>
             <div id='navbarFiller2'></div>
-            <span id='cartarea' onClick={setCartOpen}><span id='numOfItems'>{itemNum.length}</span><img id='cart' alt='cart icon' src='https://www.freeiconspng.com/thumbs/cart-icon/basket-cart-icon-27.png' width='30px'></img></span>
+            <span id='cartarea' onClick={setCartOpen}><span id='numOfItems'>{itemNum}</span><img id='cart' alt='cart icon' src='https://www.freeiconspng.com/thumbs/cart-icon/basket-cart-icon-27.png' width='30px'></img></span>
         </div>
     )
 }
